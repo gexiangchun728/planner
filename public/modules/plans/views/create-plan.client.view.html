@@ -1,0 +1,62 @@
+<section data-ng-controller="PlansController">
+    <div class="page-header">
+        <h1>New Plan</h1>
+    </div>
+    <div class="col-md-12">
+        <form name="planForm" class="form-horizontal" data-ng-submit="create()" novalidate>
+            <fieldset>
+                <div class="form-group"
+                     ng-class="{ 'has-error': planForm.destination.$dirty && planForm.destination.$invalid }">
+                    <label class="control-label" for="destination">Destination</label>
+
+                    <div class="controls">
+                        <input name="destination" type="text" data-ng-model="destination" id="destination"
+                               class="form-control" placeholder="Destination" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="comment">Comment</label>
+
+                    <div class="controls">
+                        <textarea name="comment" data-ng-model="comment" id="comment" class="form-control" cols="30"
+                                  rows="10" placeholder="Comment"></textarea>
+                    </div>
+                </div>
+                <div class="form-group"
+                     ng-class="{ 'has-error': planForm.start_date.$dirty && planForm.start_date.$invalid }">
+                    <label class="control-label" for="start_date">Start Date</label>
+
+                    <div class="controls input-group">
+                        <input type="text" name="start_date" id="start_date" class="form-control"
+                               datepicker-popup="yyyy/MM/dd" data-ng-model="start_date" is-open="opened_start"
+                               show-weeks="false" max-date="end_date"/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" data-ng-click="open('start', $event)"><i
+                                    class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group"
+                     ng-class="{ 'has-error': planForm.end_date.$dirty && planForm.end_date.$invalid }">
+                    <label class="control-label" for="end_date">End Date</label>
+
+                    <div class="controls input-group">
+                        <input type="text" name="end_date" id="end_date" class="form-control"
+                               datepicker-popup="yyyy/MM/dd" data-ng-model="end_date" is-open="opened_end"
+                               show-weeks="false" min-date="start_date"/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" data-ng-click="open('end', $event)"><i
+                                    class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-default">
+                </div>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</section>
